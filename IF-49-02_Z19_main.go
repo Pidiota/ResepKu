@@ -24,9 +24,9 @@ func main() {
 		fmt.Println("3 - Ubah resep")
 		fmt.Println("4 - Hapus resep")
 		fmt.Println("99 - Keluar")
-		opsi = 0
+		opsi = 99
 
-		for opsi != 99 {
+		for opsi != 0 {
 			fmt.Scan(&opsi)
 			if opsi == 1 {
 				cariResep(T, target)
@@ -48,12 +48,28 @@ func main() {
 	
 }
 
+func sortMenu(T tabResep) {
+	var pass, k, n int
+	var temp resep
+	n = 99
+	for pass = 1; pass < n; pass++{
+		k = pass
+		temp = T[k]
+		for k > 0 && temp.nama > T[k-1].nama{
+			T[k] = T[k-1]
+			k = k-1
+		}
+	T[k] = temp	
+	}
+}
+
 
 func cariResep(T tabResep, target string) {
 	fmt.Println("Silahkan Masukkan Nama Menu Yang Anda Cari")
 	fmt.Scan(&target)
+	n := 99
 
-	for i := 0; i < n; i++{ // Bagian looping untuk scannya bingung kondisinya gmana
+	for i := 0; i < n; i++{
 		if T[i].nama == target {
 			fmt.Println(T[i].nama, T[i].bahan, T[i].langkah, T[i].durasi )
 		}
@@ -62,7 +78,7 @@ func cariResep(T tabResep, target string) {
 }
 
 
-//func tambahMenu(){
+//func tambahMenu(T tabResep){
 
 //}
 
